@@ -1,4 +1,4 @@
-package br.ChronosAcademy.media;
+package br.com.chronosAcademy.media;
 
 public class Media {
     public String calculaMedia(double v, double v1) {
