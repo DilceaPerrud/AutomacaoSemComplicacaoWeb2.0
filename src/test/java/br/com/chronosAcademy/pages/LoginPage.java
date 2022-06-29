@@ -12,7 +12,8 @@ public class LoginPage {
          PageFactory.initElements(Driver.getDriver(), loginMap);
      }
 
-     public void clickBtnLogin(){
+     public void clickBtnLogin() {
+         Driver.visibilityOf(loginMap.btnLogin);
          loginMap.btnLogin.click();
      }
 
@@ -44,7 +45,19 @@ public class LoginPage {
         loginMap.btnSignIn.click();
     }
 
-    public boolean isBtnSignIn(){
-         loginMap.btnSignIn.isEnabled();
+    public boolean isBtnSignIn() {
+        loginMap.btnSignIn.isEnabled();
+        return loginMap.btnSignIn.isEnabled();
     }
-}
+    public void visibilityOfBtnFechar() {
+        Driver.visibilityOf(loginMap.btnFechar);
+    }
+
+    public void invisibilityOfBtnFechar(){
+         Driver.invisibilityOf(loginMap.btnFechar);
+    }
+
+    }
+
+
+

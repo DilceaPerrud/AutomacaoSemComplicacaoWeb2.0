@@ -12,11 +12,12 @@ import org.junit.Assert;
 import java.util.Map;
 
 public class LoginSteps {
-    LoginPage loginPage
+    LoginPage loginPage;
+
 
     @Before
     public void iniciaNavegador(){
-    new Driver("chrome");
+        new Driver("chrome");
     }
 
     @After
@@ -25,23 +26,27 @@ public class LoginSteps {
     }
 
     @Dado("que a modal esteja sendo exibida")
-    public void queAModalEstejaSendoExibida() {
+    public void queAModalEstejaSendoExibida() throws InterruptedException {
         Driver.getDriver().get("https://www.advantageonlineshopping.com/");
         loginPage = new LoginPage();
         loginPage.clickBtnLogin();
     }
     @Quando("for realizado um clique fora da modal")
-    public void forRealizadoUmCliqueForaDaModal() {
+    public void forRealizadoUmCliqueForaDaModal(){
         loginPage.clickDivFecharModal();
     }
     @Entao("a janela modal deve ser fechada")
-    public void aJanelaModalDeveSerFechada() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void aJanelaModalDeveSerFechada() throws Exception {
+        try {
+            loginPage.invisibilityOfBtnFechar();
+        } catch (Exception e){
+        throw new Exception("A janela modal nao foi fechada");
+        }
+
     }
 
-    @Quando("for realizar um clique no ícone de fechar")
-    public void forRealizarUmCliqueNoÍconeDeFechar() {
+    @Quando("for realizado um clique no ícone de fechar")
+    public void forRealizadoUmCliqueNoÍconeDeFechar() {
         loginPage.clickBtnFechar();
     }
 
@@ -53,7 +58,6 @@ public class LoginSteps {
     @Entao("a pagina Create New Account deve ser exibida")
     public void aPaginaCreateNewAccountDeveSerExibida() {
 
-        
     }
 
     @Quando("os campos de login forem preenchidos da seguinte forma")
@@ -64,8 +68,8 @@ public class LoginSteps {
 
         loginPage.setInpUserName(username);
         loginPage.setInpPassword(password);
-        if (remember) loginPage.clickInpRemember();
 
+        if (remember) loginPage.clickInpRemember();
     }
 
     @Quando("for realizado um clique no botao sign in")
@@ -85,7 +89,7 @@ public class LoginSteps {
 
     @Entao("o botao sign in deve permanecer desabilitado")
     public void oBotaoSignInDevePermanecerDesabilitado() {
-        boolean enabled loginPage.isBtnSignIn();
+        boolean enabled = loginPage.isBtnSignIn();
         Assert.assertFalse(enabled);
     }
 }

@@ -12,8 +12,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Driver {
+import static io.github.bonigarcia.wdm.WebDriverManager.*;
 
+public class Driver {
     private static WebDriver driver;
     private static WebDriverWait wait;
 
@@ -24,35 +25,25 @@ public class Driver {
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
                     break;
-
                 case "ie":
                      WebDriverManager.iedriver().setup();
                      driver = new InternetExplorerDriver();
                      break;
-
                 case "firefox":
-                            WebDriverManager.firefoxdriver().setup();
-                            driver = new FirefoxDriver();
-                            break;
-
-
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new FirefoxDriver();
+                    break;
                 case "edge":
-
-
-                WebDriverManager.edgedriver().setup();
-                driver = new EdgeDriver();
-                break;
-
-
+                    WebDriverManager.edgedriver().setup();
+                    driver = new EdgeDriver();
+                    break;
                 default:
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
                     break;
-
             }
-        wait new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            driver.manage().window().maximize();
     }
 
     public static void visibilityOf(WebElement element){
