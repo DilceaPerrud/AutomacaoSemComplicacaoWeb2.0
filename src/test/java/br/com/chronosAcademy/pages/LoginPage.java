@@ -1,6 +1,6 @@
 package br.com.chronosAcademy.pages;
 
-import br.com.chronosAcademy.core.Driver;
+import br.com.chronosAcademy.steps.core.Driver;
 import br.com.chronosAcademy.maps.LoginMap;
 import org.openqa.selenium.support.PageFactory;
 
