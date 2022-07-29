@@ -1,6 +1,7 @@
 package br.com.chronosAcademy.steps;
 
 import br.com.chronosAcademy.enums.Browser;
+import br.com.chronosAcademy.pages.NewAccountPage;
 import br.com.chronosAcademy.steps.core.Driver;
 import br.com.chronosAcademy.pages.LoginPage;
 import io.cucumber.java.After;
@@ -15,7 +16,6 @@ import java.util.Map;
 public class LoginSteps {
     LoginPage loginPage;
 
-
     @Before
     public void iniciaNavegador(){
         new Driver(Browser.CHROME);
@@ -27,10 +27,12 @@ public class LoginSteps {
     }
 
     @Dado("que a modal esteja sendo exibida")
-    public void queAModalEstejaSendoExibida() throws InterruptedException {
+    public void queAModalEstejaSendoExibida() {
         Driver.getDriver().get("https://www.advantageonlineshopping.com/");
         loginPage = new LoginPage();
         loginPage.clickBtnLogin();
+        loginPage.visibilityOfBtnFechar();
+        loginPage.aguardaLoader();
     }
     @Quando("for realizado um clique fora da modal")
     public void forRealizadoUmCliqueForaDaModal(){
@@ -46,8 +48,8 @@ public class LoginSteps {
 
     }
 
-    @Quando("for realizado um clique no ícone de fechar")
-    public void forRealizadoUmCliqueNoÍconeDeFechar() {
+    @Quando("for realizado um clique no icone de fechar")
+    public void forRealizadoUmCliqueNoIconeDeFechar(){
         loginPage.clickBtnFechar();
     }
 
@@ -58,7 +60,8 @@ public class LoginSteps {
 
     @Entao("a pagina Create New Account deve ser exibida")
     public void aPaginaCreateNewAccountDeveSerExibida() {
-
+        NewAccountPage newAccountPage = new NewAccountPage();
+        Assert.assertEquals("CREATE ACCOUNT", newAccountPage.getTextNewAccount());
     }
 
     @Quando("os campos de login forem preenchidos da seguinte forma")
@@ -66,11 +69,16 @@ public class LoginSteps {
         String username = map.get("login");
         String password = map.get("password");
         boolean remember = Boolean.parseBoolean(map.get("remember"));
+        if (username != null){
+            loginPage.setInpUserName(username);
+        }
 
-        loginPage.setInpUserName(username);
-        loginPage.setInpPassword(password);
+        if (password != null){
+            loginPage.setInpPassword(password);
+        }
 
-        if (remember) loginPage.clickInpRemember();
+        if (remember)
+            loginPage.clickInpRemember();
     }
 
     @Quando("for realizado um clique no botao sign in")
