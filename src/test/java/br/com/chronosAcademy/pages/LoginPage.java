@@ -45,7 +45,7 @@ public class LoginPage {
         loginMap.btnSignIn.click();
     }
 
-    public boolean isBtnSignIn() {
+    public boolean isBtnSignIn(){
         loginMap.btnSignIn.isEnabled();
         return loginMap.btnSignIn.isEnabled();
     }
@@ -57,7 +57,11 @@ public class LoginPage {
          Driver.invisibilityOf(loginMap.btnFechar);
     }
 
+    public void aguardaLoader() {
+        Driver.attributeChange(loginMap.divLoader, "display", "none");
+
     }
 
+    }
 
 
