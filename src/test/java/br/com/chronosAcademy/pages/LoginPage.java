@@ -38,10 +38,11 @@ public class LoginPage {
     }
 
     public void clickLinkCreateAccount(){
-        loginMap.inpCreateAccount.click();
+        loginMap.linkCreateAccount.click();
     }
 
     public void clickBtnSignIn(){
+
         loginMap.btnSignIn.click();
     }
 
@@ -62,6 +63,17 @@ public class LoginPage {
 
     }
 
+    public String getUsuarioLogado(){
+       Driver.visibilityOf(loginMap.txtLogado);
+       return loginMap.txtLogado.getText();
     }
+
+    public String getErroLogin(){
+         Driver.visibilityOf(loginMap.txtErroLogin);
+         return loginMap.txtErroLogin.getText();
+    }
+
+    }
+
 
 

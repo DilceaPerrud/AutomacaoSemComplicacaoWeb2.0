@@ -12,17 +12,19 @@ import org.openqa.selenium.WebDriver;
 import static org.junit.Assert.assertEquals;
 
 public class TesteWeb {
-
     WebDriver driver;
     Driver driverWeb;
     PrincipalPage principalPage;
     CursoPage cursoPage;
 
 
+
+
     @Before
     public void inicializaTeste() {
         driverWeb = new Driver(Browser.CHROME);
-        driver = driverWeb.getDriver();
+
+        driver = Driver.getDriver();
         driver.get("https://www.chronosacademy.com.br");
         principalPage = new PrincipalPage(driver);
 
@@ -31,8 +33,7 @@ public class TesteWeb {
 
     @Test
     public void primeiroTeste() {
-        //section[2]/div[B3]/div/div/div/div/div[1]/div/h4
-
+        //section[2]/div[3]/div/div/div/div/div[1]/div/h4
         assertEquals("Porque Tempo É Conhecimento", principalPage.getTitulo());
 
     }
@@ -49,14 +50,10 @@ public class TesteWeb {
     }
 
 
-
-
-
     @After
     public void finalizaTeste() {
         driver.quit();
     }
-
 }
 
 
